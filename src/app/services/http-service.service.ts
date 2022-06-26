@@ -26,4 +26,9 @@ export class HttpServiceService {
       return data;
     }));
   }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.currentUserSubject.next(null);
+  }
 }
