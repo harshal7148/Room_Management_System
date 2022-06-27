@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Tenant } from '../../classes/tenant.class';
+import { CommonService } from '../../services/common.service';
 
 @Component({
   selector: 'app-tenants',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TenantsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private commonService:CommonService) { }
+
+  // Object Declaration of Class
+  tenantModel!: Tenant;
 
   ngOnInit(): void {
+    this.tenantModel = new Tenant();
+  }
+  
+  // Insert Tenant Data
+  onSave(){
+    console.warn(this.tenantModel);
+    this.commonService.postData('/tenants',this.tenantModel).subscribe(data=>{
+      console.log("postdatar",data)
+    })
   }
 
 }

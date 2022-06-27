@@ -1,1 +1,56 @@
-<p>tenants works!</p>
+<div class="container-fluid">
+
+<div class="row">
+
+    <div class="row mt-1">
+        <label class="col-1">Name</label>
+        <div class="col-2">
+            <input type="text" class="form-control form-control-sm" id="name" name="name" [(ngModel)]="tenantModel.name">
+        </div>
+    </div>
+
+    <div class="form-group row mt-2">
+        <label class="col-1">Address</label>
+        <div class="col-6">
+            <textarea class="col-4" id="address" name="address" [(ngModel)]="tenantModel.address"></textarea>
+        </div>
+    </div>
+
+    <div class="row form-group mt-1">
+        <label class="col-1">Adhar No</label>
+        <div class="col-2">
+            <input type="text" id="uin" name="uin" class="form-control form-control-sm" [(ngModel)]="tenantModel.uin">
+        </div>
+    </div>
+
+    <div class="row form-group mt-2">
+        <label class="col-1">Rent Start</label>
+        <div class="col-2">
+            <input type="text" id="rentStartDate" name="rentStartDate" class="form-control form-control-sm" [(ngModel)]="tenantModel.rentStartDate">
+        </div>
+    </div>
+
+    <!-- <div class="row form-group mt-2">
+        <label class="col-1">Deposit Amt</label>
+        <div class="col-2">
+            <input type="text" id="depositAmount" name="depositAmount" class="form-control form-control-sm" [(ngModel)]="tenantModel.depositAmount">
+        </div>
+    </div> -->
+
+    <!-- <div class="row form-group mt-2">
+        <label class="col-1">Is Active</label>
+        <div class="col-2">
+            <input type="checkbox" id="isActive" name="isActive" class="form-control form-control-sm" [(ngModel)]="tenantModel.isActive">
+        </div>
+    </div> -->
+
+    <div class="row col-4 form-group mt-2 offset-1">
+        <button type="button" class="btn btn-primary col-2" (click)="onSave()">Save</button>
+        <button type="button" class="btn btn-danger col-2 offset-1">Clear</button>
+    </div>
+    
+</div>
+
+</div>
+
+
