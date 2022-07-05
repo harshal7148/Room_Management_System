@@ -27,6 +27,10 @@ export class HttpServiceService {
     }));
   }
 
+  getOutstandingDetails(): Observable<any> {
+    return this.http.get('/api/outstanding');
+  }
+
   logout() {
     localStorage.removeItem('token');
     this.currentUserSubject.next(null);
