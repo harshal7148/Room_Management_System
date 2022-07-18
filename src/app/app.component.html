@@ -1,2 +1,2 @@
-<app-header></app-header>
+<app-header *ngIf="location.path() !== '/login' "></app-header>
 <router-outlet></router-outlet>
