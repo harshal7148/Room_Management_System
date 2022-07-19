@@ -14,6 +14,22 @@ export class TenantsComponent implements OnInit {
   // Object Declaration of Class
   tenantModel!: Tenant;
 
+  //
+  columnDefs = [
+    { headerName: "FromDate", field: "FromDate", sortable: true, filter: true},
+    { headerName: "ToDate", field: "ToDate", sortable: true, filter: true},
+    { headerName: "OutstandingAmount", field: "OutstandingAmount", sortable: true, filter: true},
+    { headerName: "Paid", field: "Paid", sortable: true, filter: true},
+  ];
+
+  rowData = [
+    { FromDate: '12/04/2022', ToDate: '12/04/2033', OutstandingAmount: "00", Paid: 'Yes'},
+    { FromDate: '12/04/2022', ToDate: '12/04/2033', OutstandingAmount: "1200", Paid: 'No'},
+    { FromDate: '12/04/2022', ToDate: '12/04/2033', OutstandingAmount: "1200", Paid: 'No'},
+    { FromDate: '12/04/2022', ToDate: '12/04/2033', OutstandingAmount: "00", Paid: 'Yes'},
+  ];
+  
+
   ngOnInit(): void {
     this.tenantModel = new Tenant();
   }
@@ -24,6 +40,20 @@ export class TenantsComponent implements OnInit {
     this.commonService.postData('api/tenants/addTenant/62b15c7f15327f43f5a14621',this.tenantModel)?.subscribe(data=>{
       console.log("postdatar",data)
     },)
+  }
+
+  onFileSelected() {
+    const inputNode: any = document.querySelector('#file');
+  
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
+  
+      reader.onload = (e: any) => {
+        //this.srcResult = e.target.result;
+      };
+  
+      reader.readAsArrayBuffer(inputNode.files[0]);
+    }
   }
 
 }

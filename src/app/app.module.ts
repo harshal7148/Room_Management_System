@@ -15,6 +15,21 @@ import { AuthInterceptor } from './services/auth.interceptor';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ViewOutstandingDetailsComponent } from './components/view-outstanding-details/view-outstanding-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+// Material components
+import {MatMenuModule} from '@angular/material/menu';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+
+
 
 @NgModule({
   declarations: [
@@ -35,7 +50,19 @@ import { ViewOutstandingDetailsComponent } from './components/view-outstanding-d
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    BrowserAnimationsModule,
+    MatNativeDateModule,
+
+    // 
+    MatMenuModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatCheckboxModule
   ],
   providers: [
     {

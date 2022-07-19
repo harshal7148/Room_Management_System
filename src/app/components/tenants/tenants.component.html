@@ -1,56 +1,54 @@
-<div class="container-fluid">
+<div class="container">
+    <p>
+        <mat-form-field appearance="outline">
+            <mat-label>Room No</mat-label>
+            <input matInput placeholder="Enter Room No"  id="roomNo" name="roomNo" [(ngModel)]="tenantModel.roomNo">
+        </mat-form-field>
 
-<div class="row">
+        &nbsp;<mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Enter Name"  id="name" name="name" [(ngModel)]="tenantModel.name">
+        </mat-form-field>
 
-    <div class="row mt-1">
-        <label class="col-1">Name</label>
-        <div class="col-2">
-            <input type="text" class="form-control form-control-sm" id="name" name="name" [(ngModel)]="tenantModel.name">
-        </div>
-    </div>
+        &nbsp;<mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="Enter Address" id="address" name="address" [(ngModel)]="tenantModel.address">
+        </mat-form-field>
 
-    <div class="form-group row mt-2">
-        <label class="col-1">Address</label>
-        <div class="col-6">
-            <textarea class="col-4" id="address" name="address" [(ngModel)]="tenantModel.address"></textarea>
-        </div>
-    </div>
+        &nbsp;<mat-form-field appearance="outline">
+            <mat-label>Adhar No</mat-label>
+            <input matInput placeholder="Enter Adhar No" id="adharno" name="adharno" [(ngModel)]="tenantModel.uin">
+        </mat-form-field>
 
-    <div class="row form-group mt-1">
-        <label class="col-1">Adhar No</label>
-        <div class="col-2">
-            <input type="text" id="uin" name="uin" class="form-control form-control-sm" [(ngModel)]="tenantModel.uin">
-        </div>
-    </div>
+        &nbsp;<mat-form-field appearance="outline">
+            <mat-label>Deposit Amount</mat-label>
+            <input matInput placeholder="Enter Deposit Amount" id="depositAmount" name="depositAmount" [(ngModel)]="tenantModel.depositAmount">
+        </mat-form-field>
 
-    <div class="row form-group mt-2">
-        <label class="col-1">Rent Start</label>
-        <div class="col-2">
-            <input type="text" id="rentStartDate" name="rentStartDate" class="form-control form-control-sm" [(ngModel)]="tenantModel.rentStartDate">
-        </div>
-    </div>
-
-    <!-- <div class="row form-group mt-2">
-        <label class="col-1">Deposit Amt</label>
-        <div class="col-2">
-            <input type="text" id="depositAmount" name="depositAmount" class="form-control form-control-sm" [(ngModel)]="tenantModel.depositAmount">
-        </div>
-    </div> -->
-
-    <!-- <div class="row form-group mt-2">
-        <label class="col-1">Is Active</label>
-        <div class="col-2">
-            <input type="checkbox" id="isActive" name="isActive" class="form-control form-control-sm" [(ngModel)]="tenantModel.isActive">
-        </div>
-    </div> -->
-
-    <div class="row col-4 form-group mt-2 offset-1">
-        <button type="button" class="btn btn-primary col-2" (click)="onSave()">Save</button>
-        <button type="button" class="btn btn-danger col-2 offset-1">Clear</button>
-    </div>
+        &nbsp;<mat-form-field appearance="outline">
+            <mat-label>Rent / Start Date - End Date</mat-label>
+            <mat-date-range-input [rangePicker]="picker">
+              <input matStartDate placeholder="Start date" [(ngModel)]="tenantModel.rentStartDate">
+              <input matEndDate placeholder="End date">
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+          
+    </p>
     
-</div>
+        <section class="example-section">
+            <button type="button"  mat-raised-button (click)="fileInput.click()">Select Profile</button>
+            <input hidden (change)="onFileSelected()" #fileInput type="file" id="file" >
+            &nbsp;<mat-checkbox class="example-margin" style="margin-left: 90px"  id="isActive" name="isActive" [(ngModel)]="tenantModel.isActive">Is Active</mat-checkbox>
+            <button style="margin-left: 65%" mat-raised-button>Save</button>
+            &nbsp;<button mat-raised-button>Clear</button>
+        </section>
+    <br>
+    <div class="row">
+        <ag-grid-angular style="width: 100%;height: 400px;" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"></ag-grid-angular>
+    </div>      
 
 </div>
-
 

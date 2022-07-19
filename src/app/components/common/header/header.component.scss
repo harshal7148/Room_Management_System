@@ -1,7 +1,10 @@
-.navbar {
-    &.navbar-expand-lg {
-        &.navbar-light {
-            background-color: #007bff21;
-        }
-    }
-}
+.mat-toolbar{
+    background-color: cornflowerblue; // #44c4e79c
+    color: white;
+  }
+  .mat-button{
+     color: white;
+  }
+  .spacer{
+    flex: 1 1 auto;
+  }
