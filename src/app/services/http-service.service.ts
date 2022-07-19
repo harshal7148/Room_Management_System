@@ -6,12 +6,12 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpServiceService {
-  private currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<any>;
+  public currentUserSubject: BehaviorSubject<any>;
+  //public currentUser: Observable<any>;
 
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<any>(localStorage.getItem('token'));
-    this.currentUser = this.currentUserSubject.asObservable();
+    this.currentUserSubject = new BehaviorSubject<any>(null);
+   // this.currentUser = this.currentUserSubject.asObservable();
   }
 
   // "name": "abcd@hhd.com",
@@ -20,11 +20,15 @@ export class HttpServiceService {
   login(loginData: any): Observable<any> {
     return this.http.post('/api/login', loginData).pipe(map((data: any) => {
       if (data) {
-        localStorage.setItem('token', data.token);
-        this.currentUserSubject.next(data);
+        //localStorage.setItem('token', data.token);
+        this.currentUserSubject.next(data.token);
       }
       return data;
     }));
+  }
+
+  getOutstandingDetails(): Observable<any> {
+    return this.http.get('/api/outstanding');
   }
 
   logout() {

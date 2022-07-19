@@ -21,9 +21,9 @@ export class TenantsComponent implements OnInit {
   // Insert Tenant Data
   onSave(){
     console.warn(this.tenantModel);
-    this.commonService.postData('/tenants',this.tenantModel).subscribe(data=>{
+    this.commonService.postData('api/tenants/addTenant/62b15c7f15327f43f5a14621',this.tenantModel)?.subscribe(data=>{
       console.log("postdatar",data)
-    })
+    },)
   }
 
 }
