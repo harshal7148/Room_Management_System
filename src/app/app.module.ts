@@ -31,6 +31,7 @@ import { ViewOutstandingDetailsComponent } from './components/view-outstanding-d
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     AgGridModule.withComponents([])
   ],
