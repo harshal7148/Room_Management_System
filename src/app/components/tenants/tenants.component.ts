@@ -23,10 +23,7 @@ export class TenantsComponent implements OnInit {
     console.warn(this.tenantModel);
     this.commonService.postData('api/tenants/addTenant/62b15c7f15327f43f5a14621',this.tenantModel)?.subscribe(data=>{
       console.log("postdatar",data)
-    },
-    err =>{
-      alert(err.error.message);
-    })
+    },)
   }
 
 }
