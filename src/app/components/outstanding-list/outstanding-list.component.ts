@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CellClickedEvent, GetRowIdFunc, GetRowIdParams, GridReadyEvent } from 'ag-grid-community';
-import { HttpServiceService } from 'src/app/services/http-service.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-outstanding-list',
@@ -28,7 +28,7 @@ export class OutstandingListComponent implements OnInit {
     console.log(params)
   }
 
-  constructor(private httpService: HttpServiceService,
+  constructor(private httpService: AuthService,
      private router: Router, private route: ActivatedRoute) { }
 
   onCellClicked(event: CellClickedEvent) {
@@ -38,7 +38,7 @@ export class OutstandingListComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.getRowId)
-    this.httpService.getOutstandingDetails().subscribe(res => {});
+    //this.httpService.getOutstandingDetails().subscribe(res => {});
   }
 
 }
