@@ -1,0 +1,53 @@
+.heading {
+    font-size: 22px;
+    color: #808080;
+}
+
+.lbl {
+    color: #9d9292;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.p-text {
+    font-weight: 500;
+    color: #000;
+}
+
+.ag-theme-balham {
+    .ag-header {
+        background: #44c4e740;
+        border-color: #44c4e79c;
+    }
+    .ag-root-wrapper {
+        border-color: #44c4e79c;
+    }
+    .ag-header-cell-text {
+        font-size: 14px;
+        color: black;
+    }
+    .ag-ltr {
+        .ag-cell {
+            font-size: 14px;
+            color: #3e3b3b;
+            font-weight: 400;
+        }
+    }
+}
+
+.container {
+    background: #007bff05;
+    max-width: 100%;
+    padding: 20px;
+}
+
+.primary-btn {
+    background-color: #fff;
+    color: #00e0ed;
+    border-color: #00e0ed;
+    &:hover {
+        color: #fff;
+        background-color: #00e0ed;
+        border-color: #00e0ed;
+    }
+}

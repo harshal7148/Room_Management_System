@@ -14,7 +14,7 @@
         </form>
     </div>
 </div> -->
-<div class="container">
+<!-- <div class="container">
     <form [formGroup]="loginForm">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
@@ -31,4 +31,16 @@
         </div>
         <button (click)="onLogin()" class="btn btn-primary">Login</button>
     </form>
+</div> -->
+<div class="background">
+    <section class="form animated flipInX">
+        <h2>Login To Your Account</h2>
+        <p class="valid">Valid. Please wait a moment.</p>
+        <p class="error">Error. Please enter correct Username &amp; password.</p>
+        <form class="loginbox" autocomplete="off" [formGroup]="loginForm">
+            <input placeholder="Username" type="text" formControlName="email" id="username" />
+            <input placeholder="Password" type="password" formControlName="password" id="password" />
+            <button id="submit" (click)="onLogin()">Login</button>
+        </form>
+    </section>
 </div>
