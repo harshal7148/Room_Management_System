@@ -5,9 +5,10 @@
         </div>
         <div class="col-md-10">
             <p><label class="lbl" for="">Name:&nbsp;</label> <span class="p-text">Shree</span></p>
-            <p><label class="lbl" for="">Amount:&nbsp;</label> <span class="p-text">1200</span></p>
+            <p><label class="lbl" for="">Outstanding Amount:&nbsp;</label> <span class="p-text">{{amount | currency: 'INR':'symbol':'4.0'}}</span></p>
         </div>
     </div>
     <br>
+    <h3 class="heading">Rent History</h3>
     <ag-grid-angular style="width: 100%;height: 500px;" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"></ag-grid-angular>
 </div>

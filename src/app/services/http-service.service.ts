@@ -11,11 +11,11 @@ export class HttpServiceService {
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<any>(null);
-   // this.currentUser = this.currentUserSubject.asObservable();
+    // this.currentUser = this.currentUserSubject.asObservable();
   }
 
   // "name": "abcd@hhd.com",
-	// "password": "1234"
+  // "password": "1234"
 
   login(loginData: any): Observable<any> {
     return this.http.post('/api/login', loginData).pipe(map((data: any) => {
@@ -28,7 +28,7 @@ export class HttpServiceService {
   }
 
   getOutstandingDetails(): Observable<any> {
-    return this.http.get('/api/outstanding');
+    return this.http.get('/api/getOutstandingHistory/62b15c7f15327f43f5a14621');
   }
 
   logout() {
