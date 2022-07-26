@@ -3,8 +3,9 @@ export class Tenant{
     roomNo?:string;
     address?:string;
     uin?:string;
-    profilePic?:string="datas";
-    rentStartDate?:string;
+    profilePic?:File;
+    //fd?:FormData;
+    rentStartDate?:number;
     depositAmount?:number;
     isActive?:boolean = true; 
 }
