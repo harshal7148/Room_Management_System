@@ -14,7 +14,7 @@ export class ImageService {
     fd = new FormData();
 
     insertImage(event:any){
-        this.fd = new FormData();
+        this.fd = new FormData();  
         this.selectedImage = <File>event.target.files[0];
         this.fd.append('file', this.selectedImage, this.selectedImage.name);
         // this.commonService.postData('/api/images/saveImage',this.fd)?.subscribe(res=>{
@@ -23,8 +23,4 @@ export class ImageService {
         // })
         return this.selectedImage;
     }
-}
-
-function providedIn(providedIn: any, arg1: string) {
-    throw new Error("Function not implemented.");
 }
