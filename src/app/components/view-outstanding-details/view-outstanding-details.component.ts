@@ -27,18 +27,28 @@ export class ViewOutstandingDetailsComponent implements OnInit {
   constructor(private httpService: HttpServiceService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let total: number = 0;
     this.route.queryParams.subscribe(res => {
       this.tenantId = res;
-      console.log(this.tenantId)
-      this.httpService.getOutstandingDetails().subscribe((result: any) => {
-        this.outstandingData = result.filter((item: any) => this.tenantId == item.tenantId?._id)
-        console.log(this.outstandingData)
+    });
+
+    this.getoutstandingDetails();
+  }
+
+  getoutstandingDetails() {
+    let total: number = 0;
+    let data;
+    this.httpService.getOutstandingDetails().subscribe((result: any) => {
+      data = result;
+      let filterRes = data.filter((item: any) => {
+        console.log(this.tenantId, item);
+        return item.tenantId?._id == this.tenantId.ID;
       });
-      this.outstandingData?.histories?.forEach((element: any) => {
-        total += +element.paidAmount;
-      });
-      this.amount = total;
+      console.log(filterRes)
+      // this.outstandingData = filterRes[0];
+      // this.outstandingData?.histories?.forEach((element: any) => {
+      //   total += +element.paidAmount;
+      // });
+      // this.amount = total;
     });
   }
 
