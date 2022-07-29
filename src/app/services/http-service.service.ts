@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpServiceService {
   public currentUserSubject: BehaviorSubject<any>;
+  public outstandingDetails = new BehaviorSubject<any>(null);
+  public outstandingDetails$ = this.outstandingDetails.asObservable();
   //public currentUser: Observable<any>;
 
   constructor(private http: HttpClient) {
@@ -28,7 +30,7 @@ export class HttpServiceService {
   }
 
   getOutstandingDetails(): Observable<any> {
-    return this.http.get('/api/getOutstandingHistory/62b15c7f15327f43f5a14621');
+    return this.http.get('/api/outstanding/getOutstandingHistory/62b15c7f15327f43f5a14621');
   }
 
   logout() {

@@ -1,10 +1,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2">
-            <img class="profile-img" src="/assets/test.png" alt="">
+            <img class="profile-img" [src]="outstandingData?.tenantId?.name" alt="">
         </div>
         <div class="col-md-10">
-            <p><label class="lbl" for="">Name:&nbsp;</label> <span class="p-text">Shree</span></p>
+            <p><label class="lbl" for="">Name:&nbsp;</label> <span class="p-text">{{outstandingData?.tenantId?.name}}</span></p>
             <p><label class="lbl" for="">Outstanding Amount:&nbsp;</label> <span class="p-text">{{amount | currency: 'INR':'symbol':'4.0'}}</span></p>
         </div>
     </div>
