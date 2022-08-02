@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2">
-            <img class="profile-img" [src]="outstandingData?.tenantId?.name" alt="">
+            <img class="profile-img" [src]="baseUrl + outstandingData?.tenantId?.profilePic" alt="">
         </div>
         <div class="col-md-10">
             <p><label class="lbl" for="">Name:&nbsp;</label> <span class="p-text">{{outstandingData?.tenantId?.name}}</span></p>

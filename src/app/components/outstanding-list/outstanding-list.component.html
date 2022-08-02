@@ -1,13 +1,6 @@
-<!-- <div>
-    <span>Name: </span><span>XYZ</span>
-</div>
-<div>
-    <span>Outstanding Amount: </span><span>1200</span>
-</div> -->
-<div>
+<div class="container">
     <h2 class="heading">Outstanding List</h2>
-    <p>Total Outstanding: <span>500000</span></p>
+    <p class="lbl">Total Outstanding: <span class="p-text">{{totalOutstandingAmount | currency: 'INR':'symbol':'4.0'}}</span></p>
+    <ag-grid-angular #agGrid class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" [getRowId]="getRowId" (gridReady)="onGridReady($event)" (cellClicked)="onCellClicked($event)"></ag-grid-angular>
 </div>
 
-<ag-grid-angular #agGrid style="width: 100%;height: 500px;" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs" [getRowId]="getRowId" (gridReady)="onGridReady($event)" (cellClicked)="onCellClicked($event)"></ag-grid-angular>
-<router-outlet></router-outlet>

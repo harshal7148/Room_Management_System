@@ -6,20 +6,27 @@ import { OutstandingListComponent } from './components/outstanding-list/outstand
 import { ViewOutstandingDetailsComponent } from './components/view-outstanding-details/view-outstanding-details.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'tenants', component: TenantsComponent },
-  { 
-    path: 'outstandings',
-    component: OutstandingListComponent,
-    // children: [
-      
-    // ]
-  },
   {
-    path: 'outstandings/details',
-    component: ViewOutstandingDetailsComponent
+    path: 'outstandings',
+    children: [
+      {
+        path: 'details',
+        component: ViewOutstandingDetailsComponent
+      },
+      {
+        path: '',
+        component: OutstandingListComponent,
+        pathMatch: 'full'
+      }
+    ]
   },
+  // {
+  //   path: 'outstandings/details',
+  //   component: ViewOutstandingDetailsComponent
+  // },
   { path: '**', redirectTo: 'login' },
 ];
 
