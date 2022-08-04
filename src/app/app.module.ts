@@ -18,15 +18,17 @@ import { ViewOutstandingDetailsComponent } from './components/view-outstanding-d
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material components
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {MatSelectModule} from '@angular/material/select';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 
@@ -54,7 +56,9 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     BrowserAnimationsModule,
     MatNativeDateModule,
 
-    // 
+    //
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatMenuModule,
     MatToolbarModule,
     MatButtonModule,
@@ -66,8 +70,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   ],
   providers: [
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:AuthInterceptor,
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true
     }
   ],

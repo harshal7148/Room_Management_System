@@ -1,4 +1,8 @@
-footer{
-    background-color: cornflowerblue; // #44c4e79c
-    color: white;
-  }
+footer {
+  background-color: cornflowerblue; // #44c4e79c
+  color: white;
+}
+
+.fixed-bottom {
+  z-index: 1;
+}

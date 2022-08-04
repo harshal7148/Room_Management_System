@@ -1,13 +1,21 @@
 <mat-toolbar>
-    <img src="/assets/rent_logo.jpg" height="65" width="75" alt="Room">
+    <img src="/assets/rent_logo.jpg" class="logo" alt="Room">
     <span>Rent System</span>
     <div class="spacer"></div>
-      <a mat-button>Dashoard</a>
-      <a mat-button routerLink="/tenants">Tenant</a>
-      <a mat-button routerLink="/outstandings">Outstanding</a>
+      <a mat-button routerLinkActive="active-link">Dashoard</a>
+      <a mat-button routerLink="/tenants" routerLinkActive="active-link">Tenant</a>
+      <a mat-button routerLink="/outstandings" routerLinkActive="active-link">Outstanding</a>
       <a mat-button [matMenuTriggerFor]="menu">Profile</a>
         <mat-menu #menu="matMenu">
             <button mat-menu-item>View Profile</button>
             <button mat-menu-item>Logout</button>
         </mat-menu>
 </mat-toolbar>
+
+<div class="loader-container" *ngIf="loaderService.isLoader | async">
+        <mat-spinner 
+                mode="indeterminate" style="top: 40%;left: 45%;">
+            </mat-spinner>
+
+    </div>
+    <!-- <mat-progress-bar mode="indeterminate"></mat-progress-bar> -->

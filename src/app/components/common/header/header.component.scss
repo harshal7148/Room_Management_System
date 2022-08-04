@@ -1,10 +1,52 @@
-.mat-toolbar{
-    background-color: cornflowerblue; // #44c4e79c
-    color: white;
+.mat-toolbar {
+  background-color: cornflowerblue; // #44c4e79c
+  color: white;
+}
+
+.logo {
+  height: 45px;
+  width: 45px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.mat-button {
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  height: 60px;
+}
+
+.loader-container {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: black;
+  opacity: 0.8;
+  z-index: 99;
+}
+
+.active-link {
+  color: red;
+  border-bottom: 1px solid;
+  border-radius: 0;
+}
+
+// override builtin style
+::ng-deep {
+  .mat-spinner {
+    circle {
+      stroke: cornflowerblue;
+    }
   }
-  .mat-button{
-     color: white;
-  }
-  .spacer{
-    flex: 1 1 auto;
-  }
+}
