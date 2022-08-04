@@ -29,6 +29,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -66,7 +67,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule,
   ],
   providers: [
     {
