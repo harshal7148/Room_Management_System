@@ -55,7 +55,7 @@ export class TenantsComponent extends FormValidation {
   ngOnInit(): void {
     this.tenantModel = new Tenant();
 
-    this._snackBar.triggerSnackBar('successfull');
+    // this._snackBar.triggerSnackBar('successfull');
   }
 
   // get Image Data
