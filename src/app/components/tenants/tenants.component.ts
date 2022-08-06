@@ -3,9 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DateUtilService } from 'src/app/commonFunctions/dateUtil.service';
 import { ImageService } from 'src/app/commonFunctions/image.service';
 import { FormValidation } from 'src/app/services/formValidation.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { Tenant } from '../../classes/tenant.class';
 import { CommonService } from '../../services/common.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
+// import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-tenants',
@@ -15,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class TenantsComponent extends FormValidation {
 
   constructor(private commonService: CommonService, private dateUtilService: DateUtilService,
-    private imageService: ImageService, private _snackBar: MatSnackBar) {
+    private imageService: ImageService, private _snackBar: SnackBarService) {
     super();
   }
 
@@ -54,7 +55,7 @@ export class TenantsComponent extends FormValidation {
   ngOnInit(): void {
     this.tenantModel = new Tenant();
 
-    this._snackBar.open('successfull');
+    this._snackBar.triggerSnackBar('successfull');
   }
 
   // get Image Data
@@ -83,11 +84,11 @@ export class TenantsComponent extends FormValidation {
       this.commonService.postData('api/tenants/addTenant/62b15c7f15327f43f5a14621', this.fd)?.subscribe(data => {
         if (data) {
           // alert(data.message);
-          this._snackBar.open(data.message, 'X', {
-            duration: 3000,
-            verticalPosition: 'top', horizontalPosition: 'end'
-          }
-          );
+          // this._snackBar.open(data.message, 'X', {
+          //   duration: 3000,
+          //   verticalPosition: 'top', horizontalPosition: 'end'
+          // }
+          // );
         }
       })
     }
