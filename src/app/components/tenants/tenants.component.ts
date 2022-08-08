@@ -134,13 +134,9 @@ export class TenantsComponent extends FormValidation {
   }
 
   getProfilePic(){
-    //console.log(this.backendUrl + this.tenantForm.controls['profilePic'].value);
     return this.backendUrl + this.tenantForm.controls['profilePic'].value;
   }
 
-  onCellClicked(event:any){
-     console.log(event);
-  }
 
   refreshForm(){
     this.tenantForm.reset();
@@ -194,8 +190,5 @@ export class TenantsComponent extends FormValidation {
           },)
         }
     }
-  }
-
-  calculateStyles(){
   }
 }
