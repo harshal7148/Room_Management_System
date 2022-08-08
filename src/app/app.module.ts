@@ -18,7 +18,7 @@ import { ViewOutstandingDetailsComponent } from './components/view-outstanding-d
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Material components
-import {MatMenuModule} from '@angular/material/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -28,6 +28,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { DateCellRender } from './components/tenants/date-cell-render.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -56,7 +59,9 @@ import { DateCellRender } from './components/tenants/date-cell-render.component'
     BrowserAnimationsModule,
     MatNativeDateModule,
 
-    // 
+    //
+    MatProgressSpinnerModule,
+    MatProgressBarModule,
     MatMenuModule,
     MatToolbarModule,
     MatButtonModule,
@@ -64,12 +69,13 @@ import { DateCellRender } from './components/tenants/date-cell-render.component'
     MatInputModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSnackBarModule,
   ],
   providers: [
     {
-      provide:HTTP_INTERCEPTORS,
-      useClass:AuthInterceptor,
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true
     }
   ],

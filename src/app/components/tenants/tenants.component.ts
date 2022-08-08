@@ -7,6 +7,7 @@ import { GridApi, ColDef, ValueFormatterParams, ICellRendererParams, GetRowIdFun
 import { DateUtilService } from 'src/app/commonFunctions/dateUtil.service';
 import { ImageService } from 'src/app/commonFunctions/image.service';
 import { FormValidation } from 'src/app/services/formValidation.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { Tenant } from '../../classes/tenant.class';
 import { CommonService } from '../../services/common.service';
 import { DateCellRender } from './date-cell-render.component';
@@ -42,7 +43,7 @@ export class TenantsComponent extends FormValidation {
   constructor(private commonService:CommonService,private dateUtilService:DateUtilService, private currencyPipe:CurrencyPipe
     ) {
     super();
-    }
+  }
 
   // form Validation Fields
   tenantForm = new FormGroup({
@@ -59,7 +60,7 @@ export class TenantsComponent extends FormValidation {
 
   // Object Declaration of Class
   tenantModel!: Tenant;
-  selectedImage!:File
+  selectedImage!: File
   fd = new FormData();
   tenantId!:string;
   profilePic:any;
@@ -68,6 +69,8 @@ export class TenantsComponent extends FormValidation {
   
   ngOnInit(): void {
     this.tenantModel = new Tenant();
+
+    // this._snackBar.triggerSnackBar('successfull');
   }
   
 
@@ -91,7 +94,7 @@ export class TenantsComponent extends FormValidation {
   }
 
   // get Image Data
-  getImageData(event:any){
+  getImageData(event: any) {
     this.selectedImage = <File>event.target.files[0];
     this.isFileSelected = true;
     console.log(this.selectedImage);
