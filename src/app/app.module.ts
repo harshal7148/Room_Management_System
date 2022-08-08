@@ -27,6 +27,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DateCellRender } from './components/tenants/date-cell-render.component';
 
 
 
@@ -35,6 +36,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
   declarations: [
     AppComponent,
     TenantsComponent,
+    DateCellRender,
     OutstandingListComponent,
     LoginComponent,
     HeaderComponent,
@@ -50,7 +52,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AgGridModule.withComponents([]),
+    AgGridModule.withComponents([TenantsComponent]),
     BrowserAnimationsModule,
     MatNativeDateModule,
 

@@ -42,18 +42,25 @@
     </p>
     
         <section class="example-section">
-            <input type='file' (change)="getImageData($event)" id="file" name="file" formControlName="file" required>
-            <mat-error *ngIf="tenantForm.controls['rentStartDate'].invalid">{{onFormValidation(tenantForm.controls['file'],'file')}}</mat-error>
-            <!-- <img src="http://localhost:4000/rent_logo.jpg"> -->
-            &nbsp;<mat-checkbox class="example-margin" style="margin-left: 90px"  id="isActive" name="isActive" formControlName="isActive" [(ngModel)]="tenantModel.isActive">Is Active</mat-checkbox>
-            <button style="margin-left: 65%" mat-raised-button (click)="onSave()">Save</button>
-            &nbsp;<button mat-raised-button>Clear</button>
+            <!-- <mat-error *ngIf="tenantForm.controls['rentStartDate'].invalid">{{onFormValidation(tenantForm.controls['file'],'file')}}</mat-error> -->
+            <mat-checkbox class="example-margin" id="isActive" name="isActive" formControlName="isActive" *ngIf="Mode === 'edit'"  [(ngModel)]="tenantModel.isActive">Is Active</mat-checkbox>
+            <input type='file' [ngClass]="{'file' : Mode === 'edit' }" (change)="getImageData($event)" id="file" name="file" required>
+            <img src="{{getProfilePic()}}" id="profilePics" style="height:24px" *ngIf="Mode === 'edit'"> 
+            <button mat-raised-button (click)="onSave()" style="margin-left: 50%">Save</button>
+            &nbsp;<button mat-raised-button (click)="refreshForm()">Clear</button>
         </section>
     </form>
 
     <br>
     <div class="row">
-        <ag-grid-angular style="width: 100%;height: 400px;" class="ag-theme-balham" [rowData]="rowData" [columnDefs]="columnDefs"></ag-grid-angular>
+        <ag-grid-angular style="width: 100%;height: 300px;" class="ag-theme-balham"
+            [columnDefs]="columnDefs"
+            [rowData]="rowData"
+            [rowSelection]="rowSelection"
+            (selectionChanged)="onSelectionChanged($event)"
+            [getRowId]="getRowId"
+            (gridReady)="onGridReady($event)"
+            ></ag-grid-angular>
     </div>      
 
 </div>

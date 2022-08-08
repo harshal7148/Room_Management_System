@@ -4,4 +4,7 @@ export class BaseComponent{
     }
 
   numberRegex = "^[0-9]*$";
+  Mode : any = "add";
+  backendUrl = "http://localhost:4000/";
+
 }
