@@ -48,7 +48,8 @@ export class ViewOutstandingDetailsComponent implements OnInit, AfterViewInit {
   getoutstandingDetails() {
     let total: number = 0;
     let filterRes;
-    this.httpService.getOutstandingDetails().subscribe((result: any) => {
+    const ownerId = localStorage.getItem('ownerId');
+    this.httpService.getOutstandingDetails(ownerId).subscribe((result: any) => {
       filterRes = result.filter((item: any) => {
         return item._id == this.tenantId.Id;
       });

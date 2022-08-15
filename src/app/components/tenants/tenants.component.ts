@@ -9,7 +9,7 @@ import { CommonService } from '../../services/common.service';
 })
 export class TenantsComponent implements OnInit {
 
-  constructor(private commonService:CommonService) { }
+  constructor(private commonService: CommonService) { }
 
   // Object Declaration of Class
   tenantModel!: Tenant;
@@ -17,13 +17,13 @@ export class TenantsComponent implements OnInit {
   ngOnInit(): void {
     this.tenantModel = new Tenant();
   }
-  
+
   // Insert Tenant Data
-  onSave(){
-    console.warn(this.tenantModel);
-    this.commonService.postData('api/tenants/addTenant/62b15c7f15327f43f5a14621',this.tenantModel)?.subscribe(data=>{
-      console.log("postdatar",data)
-    },)
+  onSave() {
+    const ownerId = localStorage.getItem('ownerId');
+    this.commonService.postData(`api/tenants/addTenant/${ownerId}`, this.tenantModel)?.subscribe(data => {
+      console.log("postdatar", data)
+    })
   }
 
 }

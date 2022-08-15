@@ -46,7 +46,8 @@ export class OutstandingListComponent implements OnInit {
   createRowData() {
     let arr: any = [];
     let outstandingAmount: number = 0;
-    this.httpService.getOutstandingDetails().subscribe(res => {
+    const ownerId = localStorage.getItem('ownerId');
+    this.httpService.getOutstandingDetails(ownerId).subscribe(res => {
       this.outstandingListData = res;
       this.outstandingListData.forEach((element: any) => {
         // outstandingAmount += +element.depositAmount;

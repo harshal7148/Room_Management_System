@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.httpService.login(payload).subscribe(res => {
-      localStorage.setItem('token', res.token);
+      localStorage.setItem('ownerId', res.data);
       this.router.navigate(['outstandings']);
     }, (error) => {
       alert(error.error);

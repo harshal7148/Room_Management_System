@@ -29,8 +29,8 @@ export class HttpServiceService {
     }));
   }
 
-  getOutstandingDetails(): Observable<any> {
-    return this.http.get('/api/outstanding/getOutstandingHistory/62b15c7f15327f43f5a14621');
+  getOutstandingDetails(ownerId: any): Observable<any> {
+    return this.http.get(`/api/outstanding/getOutstandingHistory/${ownerId}`);
   }
 
   logout() {
