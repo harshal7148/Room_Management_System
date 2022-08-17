@@ -1,11 +1,11 @@
 import { CurrencyPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, MaxLengthValidator, Validators } from '@angular/forms';
+import { FormControl, FormGroup, MaxLengthValidator, NgForm, Validators } from '@angular/forms';
 import { AgGridAngular } from 'ag-grid-angular';
-import { GridApi, ColDef, ValueFormatterParams, ICellRendererParams, GetRowIdFunc, GetRowIdParams } from 'ag-grid-community';
+import { GridApi, ColDef, ValueFormatterParams, GetRowIdFunc, GetRowIdParams } from 'ag-grid-community';
+import { map, Observable, startWith } from 'rxjs';
 import { DateUtilService } from 'src/app/commonFunctions/dateUtil.service';
-import { ImageService } from 'src/app/commonFunctions/image.service';
 import { FormValidation } from 'src/app/services/formValidation.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { Tenant } from '../../classes/tenant.class';
@@ -20,12 +20,33 @@ import { ImageCellRender } from './image-cell-render.component';
   providers: [CurrencyPipe],
 
 })
+
 export class TenantsComponent extends FormValidation {
 
-  //
-  //
+  constructor(private commonService:CommonService,private dateUtilService:DateUtilService, public currencyPipe:CurrencyPipe,private snackBarService:SnackBarService) {
+    super();
+  }
+
+  /* form Validation Fields start */
+  @ViewChild('myForm') myForm!: NgForm;
+  tenantForm = new FormGroup({
+    roomNo : new FormControl('',[Validators.required]),
+    name : new FormControl('',[Validators.required, Validators.maxLength(30)]),
+    address : new FormControl('',[Validators.required]),
+    uin : new FormControl('',[Validators.required, Validators.maxLength(12), Validators.pattern(this.numberRegex)]),
+    depositAmount : new FormControl('',[Validators.required, Validators.pattern(this.numberRegex)]),
+    rentStartDate : new FormControl('',[Validators.required]),
+    profilePic : new FormControl(),
+    isActive : new FormControl()
+  });
+  /* form Validation Fields end */
+
+  /* ag Grid */
   private gridApi: GridApi = new GridApi;
   columnApi:any;
+  //@ViewChild('agGrid')
+  agGrid!: AgGridAngular;
+  public rowSelection: 'single' | 'multiple' = 'single';
 
   columnDefs : ColDef[] = [
     { headerName: "Profile Pic", field: "profilePic", cellRenderer:ImageCellRender, sortable: true, filter: true},
@@ -40,24 +61,6 @@ export class TenantsComponent extends FormValidation {
   rowData = [
   ];
 
-  constructor(private commonService:CommonService,private dateUtilService:DateUtilService, private currencyPipe:CurrencyPipe
-    ) {
-    super();
-  }
-
-  // form Validation Fields
-  tenantForm = new FormGroup({
-    roomNo : new FormControl('',[Validators.required, Validators.maxLength(3),Validators.pattern(this.numberRegex)]),
-    name : new FormControl('',[Validators.required, Validators.maxLength(30)]),
-    address : new FormControl('',[Validators.required]),
-    uin : new FormControl('',[Validators.required, Validators.maxLength(12), Validators.pattern(this.numberRegex)]),
-    depositAmount : new FormControl('',[Validators.required, Validators.pattern(this.numberRegex)]),
-    rentStartDate : new FormControl('',[Validators.required]),
-    profilePic : new FormControl(),
-    isActive : new FormControl()
-  });
-  
-
   // Object Declaration of Class
   tenantModel!: Tenant;
   selectedImage!: File
@@ -65,14 +68,16 @@ export class TenantsComponent extends FormValidation {
   tenantId!:string;
   profilePic:any;
   isFileSelected:boolean = false;
+  availableRoomNos : any[] = [];
+  myControl = new FormControl('');
+  filteredOptions!: any;
    
   
   ngOnInit(): void {
     this.tenantModel = new Tenant();
-
+    this.getAvailableRoomNos();
     // this._snackBar.triggerSnackBar('successfull');
   }
-  
 
   onGridReady(params:any){
     this.gridApi = params.api;
@@ -82,6 +87,11 @@ export class TenantsComponent extends FormValidation {
     this.getTenantList();
   }
 
+  public getRowId: GetRowIdFunc = (params: GetRowIdParams) => {
+    return params.data._id;
+  };
+
+  
   getTenantList(){
     this.commonService.getData('/api/tenants/getTenant/62b15c7f15327f43f5a14621')?.subscribe(
       data=>{
@@ -93,33 +103,10 @@ export class TenantsComponent extends FormValidation {
     )
   }
 
-  // get Image Data
-  getImageData(event: any) {
-    this.selectedImage = <File>event.target.files[0];
-    this.isFileSelected = true;
-    console.log(this.selectedImage);
-  }
-
-  @ViewChild('agGrid')
-  agGrid!: AgGridAngular;
-  public rowSelection: 'single' | 'multiple' = 'single';
-
-  // {{totalOutstandingAmount | currency: 'INR':'symbol':'4.0'}}
-  onRowSelected(event:any) {
-    console.log("row " + event.node.data.athlete + " selected = " + event.node.selected);
-  }
-
-  currency(params:ValueFormatterParams){
-    console.log(this.currencyPipe);
-    return "hello";
-  }
-
   onSelectionChanged(event:any) {
     this.Mode = 'edit';
     const tenantModel:any = this.gridApi.getSelectedRows();
     this.tenantId = tenantModel[0]._id;
-
-    console.log(tenantModel);
     this.tenantForm.patchValue({
         profilePic: tenantModel[0].profilePic ? tenantModel[0].profilePic : '',
         roomNo : tenantModel[0].roomNo,
@@ -130,28 +117,8 @@ export class TenantsComponent extends FormValidation {
         rentStartDate : new Date(tenantModel[0].rentStartDate),
         isActive : tenantModel[0].isActive
     })
-
-    console.log(document.getElementById('profilePics'));
-    //this.selectedImage. = tenantModel[0].profilePic
-    console.log(this.tenantForm); 
   }
 
-  getProfilePic(){
-    return this.backendUrl + this.tenantForm.controls['profilePic'].value;
-  }
-
-
-  refreshForm(){
-    this.tenantForm.reset();
-    this.Mode = "add";
-    this.tenantId = "";
-    this.isFileSelected = false;
-  }
-
-  public getRowId: GetRowIdFunc = (params: GetRowIdParams) => {
-    return params.data._id;
-  };
-  
   // Insert Tenant Data
   onSave(){
     if(this.tenantForm.valid){
@@ -177,7 +144,7 @@ export class TenantsComponent extends FormValidation {
         if(this.Mode === 'add'){
           this.fd.append('isActive', 'true');
           this.commonService.postData('api/tenants/addTenant/62b15c7f15327f43f5a14621', this.fd)?.subscribe(addRes=>{
-            alert(addRes.message);
+            this.snackBarService.triggerSnackBar(addRes.message);
             this.gridApi.applyTransaction({add : [addRes.data]})
             this.refreshForm();
           },)
@@ -186,7 +153,7 @@ export class TenantsComponent extends FormValidation {
           // update tenant
           this.fd.append('isActive',  this.tenantForm.controls['isActive'].value);
           this.commonService.putData('api/tenants/updateTenant/' + this.tenantId + '/62b15c7f15327f43f5a14621', this.fd)?.subscribe(updateRes=>{
-            alert(updateRes.message);
+            this.snackBarService.triggerSnackBar(updateRes.message);
             var rowNode = this.gridApi.getRowNode(this.tenantId)!;
             rowNode?.setData(updateRes.data);
             this.refreshForm();
@@ -194,4 +161,47 @@ export class TenantsComponent extends FormValidation {
         }
     }
   }
+
+  // get Image Data
+  getImageData(event: any) {
+    this.selectedImage = <File>event.target.files[0];
+    this.isFileSelected = true;
+  }
+
+  getProfilePic(){
+    return this.backendUrl + this.tenantForm.controls['profilePic'].value;
+  }
+  refreshForm(){
+    this.tenantForm.reset();
+    this.myForm.resetForm();
+    this.Mode = "add";
+    this.tenantId = "";
+    this.isFileSelected = false;
+    
+  }
+  
+  /* room No filteration Logic start */
+  async getAvailableRoomNos(){
+    this.commonService.getData('/api/tenants/roomNoDropDown/62b15c7f15327f43f5a14621')?.subscribe(
+      data => {
+        this.availableRoomNos = data;
+        console.log("availableRoomNos",this.availableRoomNos)
+        this.searchRoomNo();
+    })
+  }
+
+  searchRoomNo(){
+    this.filteredOptions = this.myControl.valueChanges.pipe(  
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
+  }
+
+  private _filter(value: string) {
+    console.log("availableRoomNos",this.availableRoomNos)
+    const filterValue = value.toLowerCase();
+     return this.availableRoomNos.filter((roomNo:any) => roomNo.toLowerCase().includes(filterValue));
+  }
+   /* room No filteration Logic end */
+  
 }

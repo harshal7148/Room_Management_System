@@ -31,6 +31,8 @@ import { DateCellRender } from './components/tenants/date-cell-render.component'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { CurrencyPipe } from '@angular/common';
 
 
 
@@ -71,13 +73,15 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDatepickerModule,
     MatCheckboxModule,
     MatSnackBarModule,
+    MatAutocompleteModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }
+    },
+    CurrencyPipe
   ],
   bootstrap: [AppComponent]
 })
