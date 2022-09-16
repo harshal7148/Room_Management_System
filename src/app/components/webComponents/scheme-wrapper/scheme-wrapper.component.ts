@@ -10,6 +10,7 @@ export class SchemeWrapperComponent implements OnInit {
   constructor() { }
   @Input() dialogData : any;
   data = "hello";
+  link = "http://localhost:9026/schemeMaster_micro-fe.js"
 
   ngOnInit(): void {
   }

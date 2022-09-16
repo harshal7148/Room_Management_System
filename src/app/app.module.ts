@@ -17,6 +17,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { ViewOutstandingDetailsComponent } from './components/view-outstanding-details/view-outstanding-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
+import {LazyElementsModule} from '@angular-extensions/elements';
 
 
 // Material components
@@ -66,7 +67,7 @@ import { CommonDialogComponent } from './components/dialogComponent/common/commo
     AgGridModule.withComponents([TenantsComponent]),
     BrowserAnimationsModule,
     MatNativeDateModule,
-
+    LazyElementsModule,
     //
     MatProgressSpinnerModule,
     MatProgressBarModule,
