@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ViewOutstandingDetailsComponent } from './components/view-outstanding-details/view-outstanding-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 // Material components
 import { MatMenuModule } from '@angular/material/menu';
@@ -33,6 +35,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { CurrencyPipe } from '@angular/common';
+import { SchemeWrapperComponent } from './components/webComponents/scheme-wrapper/scheme-wrapper.component';
+import { CommonDialogComponent } from './components/dialogComponent/common/commonDialog.component';
 
 
 
@@ -48,7 +52,9 @@ import { CurrencyPipe } from '@angular/common';
     SidebarComponent,
     FooterComponent,
     DashboardComponent,
-    ViewOutstandingDetailsComponent
+    ViewOutstandingDetailsComponent,
+    SchemeWrapperComponent,
+    CommonDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -73,8 +79,10 @@ import { CurrencyPipe } from '@angular/common';
     MatDatepickerModule,
     MatCheckboxModule,
     MatSnackBarModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDialogModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

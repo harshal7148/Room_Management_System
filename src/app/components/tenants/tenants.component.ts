@@ -10,6 +10,7 @@ import { FormValidation } from 'src/app/services/formValidation.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 import { Tenant } from '../../classes/tenant.class';
 import { CommonService } from '../../services/common.service';
+import { BtnCellRenderer } from './button-cell-renderer.component';
 import { DateCellRender } from './date-cell-render.component';
 import { ImageCellRender } from './image-cell-render.component';
 
@@ -56,6 +57,8 @@ export class TenantsComponent extends FormValidation {
     { headerName: "Adhar No", field: "uin", sortable: true, filter: true},
     { headerName: "Deposit Amount", field: "depositAmount", sortable: true, filter: true},
     { headerName: "Rent Start Date", field: "rentStartDate", cellRenderer:DateCellRender, sortable: true, filter: true},
+    { headerName: "Action", cellRenderer:BtnCellRenderer, sortable: true, filter: true},
+
   ];
 
   rowData = [

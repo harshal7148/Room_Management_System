@@ -4,6 +4,7 @@ import { LoginComponent } from './components/common/login/login.component';
 import { TenantsComponent } from './components/tenants/tenants.component';
 import { OutstandingListComponent } from './components/outstanding-list/outstanding-list.component';
 import { ViewOutstandingDetailsComponent } from './components/view-outstanding-details/view-outstanding-details.component';
+import { SchemeWrapperComponent } from './components/webComponents/scheme-wrapper/scheme-wrapper.component';
 
 const routes: Routes = [
   { path: '',   redirectTo: '/login', pathMatch: 'full' },
@@ -19,6 +20,9 @@ const routes: Routes = [
   {
     path: 'outstandings/details',
     component: ViewOutstandingDetailsComponent
+  },
+  {
+    path: 'scheme', component: SchemeWrapperComponent
   },
   { path: '**', redirectTo: 'login' },
 ];
